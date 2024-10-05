@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex 3</title>
+</head>
+<body>
+    <form>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" oninput="validate()" required>
+            <p id="Error" class="CheckName"></p>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" oninput="validatePassword()" required>
+            <p id="passwordStrength" class="CheckStrength"></p>
+        </div>
+    </form>
+    <script>
+        function validate(){
+            const name = document.getElementById("name").value;
+            const error = document.getElementById("Error");
+           
+
+            if(name.length < 3){
+                error.textContent = "Invalid name. It muct be more than three charaters";
+            } else {
+                error.textContent = ""; 
+            }
+        }
+        function validatePassword(){
+            const pass = document.getElementById("password").value; 
+            const checkPass = document.getElementById("passwordStrength");
+
+            if(pass.length < 5){
+                checkPass.textContent = "Weak";
+            } else if(pass.length <= 8){
+                checkPass.textContent = "Medium";
+            } else{
+                checkPass.textContent = "Strong";
+            }
+            return checkPass;
+        }
+    </script>
+</body>
+</html>

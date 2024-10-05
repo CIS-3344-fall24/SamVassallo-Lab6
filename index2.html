@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<body>
+    <div>
+        <from>
+            <label for="name">Name(must be more than 3 charater)</label>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="email">Email Address</label>
+            <input type="email" id="email"><br><br>
+            <label for="phone">Phone Number</label>
+            <input type="number" id="phone"><br><br>
+            <label for="pwd">Create a Password:</label>
+            <input type="password" id="pwd" name="pwd"><br><br>
+            <label for="pwdConfrim">Confrim Password:</label>
+            <input type="password" id="pwdConfrim" name="pwdConfrim"><br><br>
+            <label for="age">Age</label>
+            <input type="number" id="age"><br><br>
+            <label for ="website">Website Link</label>
+            <input type="url" id="website"><br><br>
+            <button type="button" id="submit">Submit</button>
+    </div>
+    <script>
+
+        document.getElementById("submit").addEventListener("click", function() {
+            if (valid()) {
+            alert("The form has been submitted");   
+                    }
+                });
+
+        function valid(){
+            const name = document.getElementById('name').value;
+            const email = document.getElementById("email").value;
+            const phoneNumber= document.getElementById("phone").value;
+            const pass = document.getElementById("pwd").value;
+            const passCon = document.getElementById("pwdConfrim").value;
+            const age = document.getElementById("age").value;
+            const url = document.getElementById("website").value;
+    
+            if(name.length <= 3){
+                alert("Name is invalid");
+                return false;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert("Email is in invalid");
+                return false;
+            }
+            const phonePattern = /^\d{10}$/; 
+            if (!phonePattern.test(phoneNumber)) {
+                alert("Phone Number is invalid");
+                return false; 
+            }
+            if(pass.length <= 8){
+                alert("Password is invalid please ensure it is more then 8 characters");
+                return false;
+            }
+            const Upper = /[A-Z]/;
+            if(!Upper.test(pass)){
+                alert("Password is invalid. It must contain one uppercase letter");
+                return false;
+            }
+            const Lower = /[a-z]/;
+            if(!Lower.test(pass)){
+                alert("Password is invalis. It must contians one lowercase letter");
+                return false;
+            }
+            const digit = /\d/;
+            if(!digit.test(pass)){
+                alert("Password is invlaid must contain a number");
+                return false;
+            }
+            const special = /[!@#$%^&*(),.?":{}|<>]/;
+            if(!special.test(pass)){
+                alert("Password is invalid must contain one special charater");
+                return false;
+            }
+            if(pass !== passCon){
+                alert("Passwords do not match.");
+                return false;
+            }
+            if(age < 18 || age > 60){
+                alert("Age is invalid. Must be between the ages of 18 and 60");
+                return false;
+            }
+            const urlCheck = /^(https?:\/\/)?[^\s/$.?#].[^\s]*$/;
+            if(!urlCheck.test(url)){
+                alert("Link is invalid");
+                return false;
+            }
+            return true;
+        
+        }
+    </script>
+</body>
+</html>

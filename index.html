@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prfile Card</title>
+    <style>
+        .profile-card {
+            width: 200px;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center; 
+            
+            
+        }
+        img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            align-items: center;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>Build Your Profile Card</h1>
+    <div>
+    <form> 
+    <label for="firtname">First Name</label>
+    <input type="text" id="firstname" name="firstname" oninput="changeProfile()">
+    <br><br>
+    <label for="lastname">Last Name</label>
+    <input type="text" id="lastname" name="lastname" oninput="changeProfile()">
+    <br><br>
+    <label for="bgcolor">Favorite Color</label>
+    <input type="color" value="#5F9EA0" id="bgcolor" name="bgcolor" oninput="changeProfile()">
+    <br><br>
+    <label for="hobby">Hobby</label>
+    <select name="hobby" id="hobby" onchange="changeProfile()">
+        <option value="Loves to Code">Coding</option>
+        <option value="Loves to play Games">Gaming</option>
+        <option value="Loves to Cook">Cooking</option>
+        <option value="Loves to Ski">Skiing</option>
+    </select>
+    <br><br>
+    <label for ="profilepic">Profile Picture URL</label>
+    <input type="url" id="profilepic" name="profilepic" oninput="changeProfile()">
+    <button type="button">Submit</button>
+    </form>
+</div>
+<h2>Your Profile Card</h2>
+
+<div class="profile-card" id="profileCard">
+    <img id="pic" src="" alt="Profile Picture"><br>
+    <div id="displayName" style="font-weight: bold">Name</div><br>
+    <div id="displayHobby">Hobby</div>
+</div>
+
+
+<script>
+    function changeProfile() {
+        const firstname = document.getElementById('firstname').value;
+        const lastname = document.getElementById('lastname').value;
+        const bgcolor = document.getElementById('bgcolor').value;
+        const hobby = document.getElementById('hobby').value;
+        const profilepic = document.getElementById('profilepic').value;
+
+        const profileCard = document.getElementById('profileCard');
+        profileCard.style.backgroundColor = bgcolor;
+
+        const fullName = `${firstname} ${lastname}`;
+        document.getElementById('displayName').textContent = fullName || "Name";
+        document.getElementById('displayHobby').textContent = hobby || "Hobby";
+
+        const pic = document.getElementById('pic');
+        if (profilepic) {
+            pic.src = profilepic;
+            pic.style.display = 'block';
+        } else {
+            pic.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>
